@@ -1,8 +1,7 @@
-import 'package:every/details/details_screen.dart';
-import 'package:every/event/event_model.dart';
-import 'package:every/event/stores/event_store.dart';
-import 'package:every/event/widgets.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:every/models/event_model.dart';
+import 'package:every/screens/details/details_screen.dart';
+import 'package:every/shared/components/widgets.dart';
+import 'package:every/shared/controlers/event_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -21,6 +20,7 @@ class _EventScreenState extends State<EventScreen> {
     event.tittle = "Retrospectiva";
     event.name = "Fulano";
     event.body = "HGKGKidsdjd";
+    event.value = false;
 
     eventStore.events.add(event);
 
@@ -28,22 +28,9 @@ class _EventScreenState extends State<EventScreen> {
     evento.tittle = "Decoração";
     evento.name = "Beltrano";
     evento.body = "HGKGKidsdjd";
+    evento.value = false;
 
     eventStore.events.add(evento);
-
-    Event evento2 = Event();
-    evento2.tittle = "Decoração";
-    evento2.name = "Beltrano";
-    evento2.body = "HGKGKidsdjd";
-
-    eventStore.events.add(evento2);
-
-    Event evento3 = Event();
-    evento3.tittle = "Decoração";
-    evento3.name = "Beltrano";
-    evento3.body = "HGKGKidsdjd";
-
-    eventStore.events.add(evento3);
 
     eventStore.addPeople();
     eventStore.addPeople();
@@ -53,7 +40,7 @@ class _EventScreenState extends State<EventScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BgStack(
+      body: bgStack(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Column(
@@ -140,10 +127,11 @@ class _EventScreenState extends State<EventScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               return Observer(
                                 builder: (_) {
-                                  return EventTile(
+                                  return eventTile(
                                     event: eventStore.events[index],
                                     context: context,
-                                    child: Check(
+                                    opacity: eventStore.events[index].value,
+                                    child: check(
                                       value: eventStore.events[index].value,
                                       onChanged: () {
                                         eventStore.changeCheck(index);

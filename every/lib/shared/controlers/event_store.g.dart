@@ -64,6 +64,17 @@ mixin _$EventStore on _EventStore, Store {
   }
 
   @override
+  void addPeopleInEvent() {
+    final _$actionInfo = _$_EventStoreActionController.startAction(
+        name: '_EventStore.addPeopleInEvent');
+    try {
+      return super.addPeopleInEvent();
+    } finally {
+      _$_EventStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 events: ${events},

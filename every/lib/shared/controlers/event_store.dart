@@ -1,4 +1,4 @@
-import 'package:every/event/event_model.dart';
+import 'package:every/models/event_model.dart';
 import 'package:mobx/mobx.dart';
 
 part 'event_store.g.dart';

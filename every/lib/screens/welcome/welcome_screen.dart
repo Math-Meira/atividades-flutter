@@ -1,5 +1,5 @@
-import 'package:every/event/event_screen.dart';
-import 'package:every/login/login_screen.dart';
+import 'package:every/screens/event/event_screen.dart';
+import 'package:every/screens/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -21,7 +21,7 @@ class Welcome extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(180),
                     child: Image.asset(
-                      "images/dye_bg.jpg",
+                      "assets/images/dye_bg.jpg",
                       height: 200,
                       width: 200,
                       fit: BoxFit.cover,

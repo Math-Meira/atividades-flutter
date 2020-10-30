@@ -1,10 +1,11 @@
-import 'file:///C:/Users/HP/Documents/flutter_pessoal/atividades_flutter/every/lib/event/stores/event_store.dart';
-import 'package:every/event/event_model.dart';
+import 'package:every/models/event_model.dart';
+import 'package:every/screens/details/details_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'dart:math';
 
-Widget EventTile({Event event, Widget child, BuildContext context}) {
+Widget eventTile(
+    {Event event, Widget child, BuildContext context, bool opacity}) {
   List<Color> colors = [
     HexColor("FA4F3B"),
     HexColor("1ECD8C"),
@@ -20,54 +21,57 @@ Widget EventTile({Event event, Widget child, BuildContext context}) {
     event.color = color;
   }
 
-  return Container(
-    width: MediaQuery.of(context).size.width,
-    margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 16),
-          width: 2,
-          height: MediaQuery.of(context).size.height * 0.12,
-          color: event.color,
-        ),
-        Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(event.tittle,
-                      style: TextStyle(color: event.color, fontSize: 18)),
-                  SizedBox(width: 8),
-                  Text(event.name,
-                      style: TextStyle(color: Colors.black26, fontSize: 18)),
-                ],
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              Text(
-                event.body,
-                style: TextStyle(fontSize: 18),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                softWrap: false,
-              ),
-            ],
+  return Opacity(
+    opacity: opacity ? 0.4 : 1,
+    child: Container(
+      width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            margin: EdgeInsets.only(right: 16),
+            width: 2,
+            height: MediaQuery.of(context).size.height * 0.12,
+            color: event.color,
           ),
-        ),
-        child,
-      ],
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(event.tittle,
+                        style: TextStyle(color: event.color, fontSize: 18)),
+                    SizedBox(width: 8),
+                    Text(event.name,
+                        style: TextStyle(color: Colors.black26, fontSize: 18)),
+                  ],
+                ),
+                SizedBox(
+                  height: 6,
+                ),
+                Text(
+                  event.body,
+                  style: TextStyle(fontSize: 18),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  softWrap: false,
+                ),
+              ],
+            ),
+          ),
+          child,
+        ],
+      ),
     ),
   );
 }
 
-Widget Check({bool value, Function onChanged}) {
+Widget check({bool value, Function onChanged}) {
   return Container(
     width: 30,
     height: 30,
@@ -110,7 +114,7 @@ List<Widget> peopleList(List<Person> person) {
   return photos;
 }
 
-Widget BgStack({double height, double width, Widget child}) {
+Widget bgStack({double height, double width, Widget child}) {
   return Stack(alignment: Alignment.bottomCenter, children: [
     Container(
       height: height,
@@ -136,18 +140,25 @@ Widget BgStack({double height, double width, Widget child}) {
   ]);
 }
 
-List<Widget> ListTittles(List<String> tittles) {
+List<Widget> listTittles(DetailsController detailsController) {
   List<Widget> texts = List<Widget>();
 
-  for (String s in tittles) {
-    texts.add(Container(
-      margin: EdgeInsets.symmetric(horizontal: 12),
-      child: Text(
-        s,
-        style: TextStyle(
-            fontSize: 16,
-            color: HexColor("2C2929"),
-            fontWeight: FontWeight.w300),
+  for (String s in detailsController.tittles) {
+    texts.add(Opacity(
+      opacity: s == detailsController.currentTab ? 1 : 0.4,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 12),
+        child: InkWell(
+          onTap: (){
+            detailsController.setCurrentTab(s);
+          },
+          child: Text(
+            s,
+            style: TextStyle(
+                fontSize: 16,
+                color: HexColor("2C2929")),
+          ),
+        ),
       ),
     ));
   }
@@ -155,7 +166,7 @@ List<Widget> ListTittles(List<String> tittles) {
   return texts;
 }
 
-List<Widget> PeopleCard(List<Person> people) {
+List<Widget> peopleCard(List<Person> people) {
   List<Widget> cards = List<Widget>();
 
   for (Person p in people) {

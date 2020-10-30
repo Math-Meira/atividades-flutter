@@ -1,5 +1,4 @@
-import 'package:every/event/event_screen.dart';
-import 'package:every/welcome/welcome_screen.dart';
+import 'package:every/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
