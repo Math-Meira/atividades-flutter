@@ -151,6 +151,46 @@ class PaymentScreen extends StatelessWidget {
                         margin: EdgeInsets.only(bottom: 24, top: 36),
                         alignment: Alignment.centerLeft,
                         child: Text(
+                          "Address details",
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(36),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Colors.white,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Marvis Kparobo",
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w500),
+                            ),
+                            Divider(),
+                            Text(
+                              "Km 5 refinery road oppsite republic road, effurun, delta state",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w400),
+                              maxLines: 2,
+                            ),
+                            Divider(),
+                            Text(
+                              "+234 9011039271",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w400),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 24, top: 36),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
                           "Delivery method",
                           style: TextStyle(
                               fontSize: 17, fontWeight: FontWeight.w600),
