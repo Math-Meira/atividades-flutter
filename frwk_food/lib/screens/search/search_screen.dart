@@ -85,25 +85,72 @@ class _SearchScreenState extends State<SearchScreen> {
               builder: (_) {
                 return searchController.suggestions.isEmpty ||
                         searchController.suggestions == []
-                    ? Container(
-                        color: Colors.amber,
-                        height: 200,
-                        width: 300,
+                    ? Expanded(
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: Color.fromRGBO(199, 199, 199, 1),
+                                size: MediaQuery.of(context).size.width * 0.5,
+                              ),
+                              Text(
+                                "Item not found",
+                                style: TextStyle(
+                                    fontSize: 28, fontWeight: FontWeight.w600),
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                "Try searching the item with\n a different keyword.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w400),
+                                maxLines: 2,
+                              ),
+                            ],
+                          ),
+                        ),
                       )
                     : Expanded(
                         child: Container(
-                          margin: EdgeInsets.only(top: 16, left: 18, right: 18),
-                          child: GridView.count(
-                            shrinkWrap: true,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(30))),
+                          margin: EdgeInsets.only(top: 16),
+                          padding:
+                              EdgeInsets.only(top: 36, left: 18, right: 18),
+                          child: SingleChildScrollView(
                             scrollDirection: Axis.vertical,
-                            crossAxisCount: 2,
-                            childAspectRatio: 2 / 3,
-                            children: cardTiles(
-                                searchController.suggestions,
-                                EdgeInsets.symmetric(
-                                    horizontal: 18, vertical: 8),
-                                context,
-                                pop: true),
+                            child: Column(
+                              children: [
+                                Text(
+                                  "Found ${searchController.suggestions.length} results",
+                                  style: TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                SizedBox(height: 36),
+                                GridView.count(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  crossAxisCount: 2,
+                                  childAspectRatio: 2 / 3,
+                                  children: cardTiles(
+                                    searchController.suggestions,
+                                    EdgeInsets.symmetric(
+                                        horizontal: 18, vertical: 8),
+                                    context,
+                                    pop: true,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       );

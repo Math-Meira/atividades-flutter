@@ -11,14 +11,26 @@ abstract class _CardapioController with Store {
 
   @action
   void setCardapio() {
-    cardapio.add(
-        Food(name: "Salmao grelhado", number: "N1,900", url: ImgFood().salmon));
-    cardapio.add(
-        Food(name: "Bife com aspargo", number: "N1,900", url: ImgFood().beef));
-    cardapio
-        .add(Food(name: "Pizza mista", number: "N1,900", url: ImgFood().pizza));
-    cardapio.add(
-        Food(name: "Eclair de creme", number: "N1,900", url: ImgFood().eclair));
+    cardapio.add(Food(
+        name: "Salmao grelhado",
+        number: "N1,900",
+        price: 23,
+        url: ImgFood().salmon));
+    cardapio.add(Food(
+        name: "Bife com aspargo",
+        number: "N1,900",
+        price: 19,
+        url: ImgFood().beef));
+    cardapio.add(Food(
+        name: "Pizza mista",
+        number: "N1,900",
+        price: 40,
+        url: ImgFood().pizza));
+    cardapio.add(Food(
+        name: "Eclair de creme",
+        number: "N1,900",
+        price: 14,
+        url: ImgFood().eclair));
   }
 
   @action

@@ -4,8 +4,9 @@ class Food {
   String number;
   bool favorite;
   int quantity;
+  double price;
 
-  Food({this.name, this.url, this.number}) {
+  Food({this.name, this.url, this.number, this.price}) {
     this.favorite = false;
     this.quantity = 0;
   }

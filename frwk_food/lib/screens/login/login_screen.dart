@@ -4,10 +4,14 @@ import 'package:frwk_food/screens/home/home_screen.dart';
 import 'package:frwk_food/screens/login/components.dart';
 import 'package:frwk_food/screens/login/login_controller.dart';
 import 'package:frwk_food/shared/components.dart';
+import 'package:frwk_food/shared/controllers/cardapio/cardapio_controller.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Provider.of<CardapioController>(context).setCardapio();
+
     LoginController loginController = LoginController();
     return Scaffold(
       backgroundColor: Color.fromRGBO(242, 242, 242, 1),

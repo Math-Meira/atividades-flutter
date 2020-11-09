@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frwk_food/screens/welcome/welcome_screen.dart';
+import 'package:frwk_food/shared/controllers/cardapio/cardapio_controller.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

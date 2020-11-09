@@ -21,8 +21,8 @@ class DetailScreen extends StatelessWidget {
     final CardapioController cardapioController =
         Provider.of<CardapioController>(context);
     int index;
-    for(int i = 0; i < cardapioController.cardapio.length; i++){
-      if(cardapioController.cardapio[i] == food){
+    for (int i = 0; i < cardapioController.cardapio.length; i++) {
+      if (cardapioController.cardapio[i] == food) {
         index = i;
       }
     }
@@ -69,54 +69,58 @@ class DetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Expanded(
-              child: Column(
-                children: [
-                  CarouselSlider(
-                    items: [
-                      carouselTile(
-                          cardapioController.cardapio[index].url, context),
-                      carouselTile(
-                          cardapioController.cardapio[index].url, context),
-                      carouselTile(
-                          cardapioController.cardapio[index].url, context),
-                      carouselTile(
-                          cardapioController.cardapio[index].url, context),
-                    ],
-                    options: CarouselOptions(
-                      onPageChanged: (index, page) {
-                        detailController.setDot(index);
-                      },
-                      autoPlay: false,
-                      enableInfiniteScroll: true,
-                      viewportFraction: 1,
-                    ),
+            Column(
+              children: [
+                CarouselSlider(
+                  items: [
+                    carouselTile(
+                        cardapioController.cardapio[index].url, context),
+                    carouselTile(
+                        cardapioController.cardapio[index].url, context),
+                    carouselTile(
+                        cardapioController.cardapio[index].url, context),
+                    carouselTile(
+                        cardapioController.cardapio[index].url, context),
+                  ],
+                  options: CarouselOptions(
+                    onPageChanged: (index, page) {
+                      detailController.setDot(index);
+                    },
+                    autoPlay: false,
+                    enableInfiniteScroll: true,
+                    viewportFraction: 1,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: dotList(detailController, 4),
-                  ),
-                ],
-              ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: dotList(detailController, 4),
+                ),
+              ],
             ),
-            Text(
-              cardapioController.cardapio[index].name,
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+            Spacer(),
+            Column(
+              children: [
+                Text(
+                  cardapioController.cardapio[index].name,
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.w600),
+                ),
+                Text(
+                  cardapioController.cardapio[index].number,
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.deepOrange),
+                ),
+                textInfo("Delivery info",
+                    "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm"),
+                SizedBox(
+                  height: 16,
+                ),
+                textInfo("Return policy",
+                    "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately."),
+              ],
             ),
-            Text(
-              cardapioController.cardapio[index].number,
-              style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.deepOrange),
-            ),
-            textInfo("Delivery info",
-                "Delivered between monday aug and thursday 20 from 8pm to 91:32 pm"),
-            SizedBox(
-              height: 16,
-            ),
-            textInfo("Return policy",
-                "All our foods are double checked before leaving our stores so by any case you found a broken food please contact our hotline immediately."),
+            Spacer(),
             customButtom(
               context: context,
               onPressed: () {

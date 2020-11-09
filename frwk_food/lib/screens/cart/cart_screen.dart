@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:frwk_food/screens/cart/components.dart';
+import 'package:frwk_food/screens/payment/payment_screen.dart';
 import 'package:frwk_food/shared/components.dart';
 import 'package:frwk_food/shared/controllers/cart/cart_controller.dart';
 import 'package:provider/provider.dart';
@@ -86,7 +87,10 @@ class CartScreen extends StatelessWidget {
               tittle: "Complete order",
               tittleColor: Colors.white,
               background: Colors.deepOrange,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => PaymentScreen()));
+              },
               context: context,
               margin: EdgeInsets.only(bottom: 36, right: 36, left: 36),
             ),

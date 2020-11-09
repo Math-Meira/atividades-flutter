@@ -23,7 +23,7 @@ abstract class _SearchController with Store {
     if (text != "" && text != " ") {
       for (Food food in cardapio) {
         String name = food.name.toLowerCase();
-        if (name.contains(seachText.toLowerCase())) {
+        if (name.contains(seachText.toLowerCase()) && !suggestions.contains(food)) {
           suggestions.add(food);
         }
       }
